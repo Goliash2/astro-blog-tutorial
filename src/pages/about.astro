@@ -1,5 +1,18 @@
 ---
+const pageTitle = "About Me";
 
+const identity = {
+    firstName: "Sarah",
+    country: "Canada",
+    occupation: "Technical Writer",
+    hobbies: ["photography", "birdwatching", "baseball"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
 ---
 
 <html lang="en">
@@ -8,13 +21,14 @@
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
+        <title>{pageTitle}</title>
     </head>
     <body>
         <a href="/">Home</a>
         <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
 
-        <h1>About Me</h1>
+        <h1>{pageTitle}</h1>
         <h2>... and my new Astro site!</h2>
         <h1>About This Blog</h1>
         <p>
@@ -23,45 +37,38 @@
             development, technology, and more.
         </p>
 
-        <h2>Our Mission</h2>
-        <p>
-            Our mission is to provide high-quality content that helps developers
-            of all levels improve their skills and stay up-to-date with the
-            latest trends in the industry.
-        </p>
+        <p>Here are a few facts about me:</p>
+        <ul>
+            <li>My name is {identity.firstName}.</li>
+            <li>
+                I live in {identity.country} and I work as a {
+                    identity.occupation
+                }.
+            </li>
+            {
+                identity.hobbies.length >= 2 && (
+                    <li>
+                        Two of my hobbies are: {identity.hobbies[0]} and{" "}
+                        {identity.hobbies[1]}
+                    </li>
+                )
+            }
+        </ul>
+        <p>My skills are:</p>
+        <ul>
+            {skills.map((skill) => <li>{skill}</li>)}
+        </ul>
 
-        <h2>Meet the Team</h2>
-        <p>
-            We are a group of passionate developers and tech enthusiasts who
-            love to share our knowledge and experiences with the community.
-        </p>
+        {happy && <p>I am happy to be learning Astro!</p>}
 
-        <h3>John Doe</h3>
-        <p>
-            John is a full-stack developer with over 10 years of experience in
-            the industry. He specializes in JavaScript and has a deep
-            understanding of modern web technologies.
-        </p>
+        {finished && <p>I finished this tutorial!</p>}
 
-        <h3>Jane Smith</h3>
-        <p>
-            Jane is a front-end developer and designer. She has a keen eye for
-            detail and loves creating beautiful and user-friendly interfaces.
-        </p>
-
-        <h3>Alex Johnson</h3>
-        <p>
-            Alex is a back-end developer with expertise in server-side
-            technologies and database management. He enjoys solving complex
-            problems and optimizing performance.
-        </p>
-
-        <h2>Contact Us</h2>
-        <p>
-            If you have any questions, suggestions, or just want to say hi, feel
-            free to reach out to us at <a href="mailto:contact@ourblog.com"
-                >contact@ourblog.com</a
-            >.
-        </p>
+        {
+            goal === 3 ? (
+                <p>My goal is to finish in 3 days.</p>
+            ) : (
+                <p>My goal is not 3 days.</p>
+            )
+        }
     </body>
 </html>
